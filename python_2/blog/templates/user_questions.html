@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} My questions {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">{% include 'include/render_list_of_questions.html' %}</div>
+    <div class="col">{% include 'include/render_list_of_answers.html' %}</div>
+</div>
+{% endblock %}
+

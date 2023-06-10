@@ -1,0 +1,40 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+#voting{
+    width:30px;
+    height:40px;
+}
+#upvote{
+   width:30px;
+   height: 30px;
+   background-image: url('like.png');
+   background-size: 100%;
+   cursor: pointer;
+}
+#downvote{
+   width: 30px;
+   height: 30px;
+   background-image: url('dislike.png');
+   background-size: 100%;
+   cursor: pointer;
+}

@@ -1,0 +1,34 @@
+    {% for question in questions %}
+        <div class="card d-flex flex-row ">
+        <div id="voting">
+            <button onclick="handleQuestionAction(event, 'Question', 'upvote')" data-id='{{ question.id }}' id="upvote"></button>
+            <div id="ratingCount">{{  question.get_rating }}</div>
+            <button onclick="handleQuestionAction(event, 'Question', 'downvote')" data-id='{{ question.id }}' id="downvote"></button>
+        </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'question_page' %}?pk={{ question.id }}">{{ question.title }}</a>
+                </h5>
+                <p class="card-text">{{ question.text|truncatechars:100 }}</p>
+                <small class="text-muted">
+                    {{ question.author }} - {{ question.published_date|date:"F j, Y" }}
+                </small>
+                <br>
+                {% if question.author == user %}
+                    <div class="mr-2 mt-2">
+                        <button onclick="handleQuestionAction(event, 'Question', 'edit')" data-id='{{ question.id }}'
+                                class="btn btn-warning btn-sm">Edit</button>
+                        <button onclick="handleQuestionAction(event, 'Question', 'delete')" data-id='{{ question.id }}'
+                                class="btn btn-outline-dark btn-sm">Delete</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <script>
+        function handleQuestionAction(event, object_name, action) {
+            let button = event.target;
+            let questionId = button.getAttribute('data-id');
+            window.location.href = `/${object_name}/${action}/${questionId}`;
+        }
+    </script>

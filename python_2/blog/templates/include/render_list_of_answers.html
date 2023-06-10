@@ -1,0 +1,26 @@
+{% for answer in answers %}
+        <div class="card d-flex flex-row">
+            <div class="card-body pl-0">
+                <p class="card-text">{{ answer.text|truncatechars:100 }}</p>
+                <small class="text-muted">
+                    {{ answer.author }} - {{ answer.published_date|date:"F j, Y" }}
+                </small>
+                <br>
+                {% if answer.author == user %}
+                    <div class="mr-2 mt-2">
+                        <button onclick="handleAnswerAction(event, 'Answer', 'edit')" data-id='{{ answer.id }}'
+                                class="btn btn-warning btn-sm">Edit</button>
+                        <button onclick="handleAnswerAction(event, 'Answer', 'delete')" data-id='{{ answer.id }}'
+                                class="btn btn-outline-dark btn-sm">Delete</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <script>
+        function handleAnswerAction(event, object_name, action) {
+            let button = event.target;
+            let answerId = button.getAttribute('data-id');
+            window.location.href = `/${object_name}/${action}/${answerId}`;
+        }
+    </script>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} New question {% endblock %}
+
+{% block content %}
+
+    {% include 'include/messages.html' %}
+
+    <div class="card mb-3">
+        <h4 class="text-center mt-3">Ask a question</h4>
+        <form action="create_question" method="post" class="mt-2 text-center">
+            {% csrf_token %}
+            {{ question_form.as_p }}
+            <input type="submit" class="btn btn-primary m-4" value="Ask">
+        </form>
+    </div>
+
+{% endblock %}

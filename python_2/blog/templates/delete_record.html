@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete {{ model }} {% endblock %}
+
+{% block content %}
+
+
+    <form method="post" class="my-3 text-center" action="/{{ model }}/delete/{{ record.id }}/">
+        {% csrf_token %}
+        <h2> Confirm delete {{ model }}</h2>
+        <p><strong>{{ model }} text: </strong><br>{{ record.text }}</p>
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
+    <div class="text-center">
+        <button onclick="redirectToMain()" class="btn btn-secondary">Cancel</button>
+    </div>
+
+    <script>
+        function redirectToMain() {
+            window.location.href = '/';
+        }
+    </script>
+{% endblock %}

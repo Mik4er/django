@@ -1,0 +1,33 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ question.title }}</h5>
+        <p class="card-text">{{ question.text }}</p>
+        <p class="card-text">
+            <small class="text-muted">
+                {{ question.author }} - {{ question.published_date| date:"F j, Y" }}
+            </small>
+        </p>
+
+        {% for answer in question.answer_set.all %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text">{{ answer.text }}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        {{ answer.author }} - {{ answer.published_date| date:"F j, Y" }}
+                    </small>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <h4 class="text-center mt-3">Add your answer</h4>
+        <form action="create_answer" method="post">
+            {% csrf_token %}
+            {{ answer_form.as_p }}
+            <input type="hidden" name="question_pk" value="{{ question.pk }}">
+            <button type="submit" class="btn btn-primary mt-1 float-right">Answer</button>
+        </form>
+
+    </div>
+</div>
